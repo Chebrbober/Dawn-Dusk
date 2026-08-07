@@ -1,0 +1,34 @@
+class_name AnimatedButton extends Button
+
+@export var ease_type: Tween.EaseType
+@export var trans_type: Tween.TransitionType = Tween.TransitionType.TRANS_QUART
+@export var anim_duration: float = 0.1
+@export var scale_amount: Vector2 = Vector2(1.15, 1.15)
+
+var tween: Tween = null
+
+func _ready() -> void:
+	button_down.connect(_on_button_down)
+	button_up.connect(_on_button_up)
+	mouse_entered.connect(_on_mouse_hovered.bind(true))
+	mouse_exited.connect(_on_mouse_hovered.bind(false))
+
+func reset_tween() -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween().set_ease(ease_type).set_trans(trans_type).set_parallel(true)
+
+func _on_mouse_hovered(hovered: bool) -> void:
+	print("hovered: ", hovered)
+	reset_tween()
+	tween.tween_property(self, "scale", scale_amount if hovered else Vector2.ONE, anim_duration)
+
+func _on_button_down():
+	print("button down")
+	reset_tween()
+	tween.tween_property(self, "scale", Vector2(0.9, 0.9), 0.05)
+
+func _on_button_up():
+	print("button up")
+	reset_tween()	
+	tween.tween_property(self, "scale", Vector2(1,1), 0.25)
