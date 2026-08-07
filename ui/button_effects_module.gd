@@ -19,16 +19,13 @@ func reset_tween() -> void:
 	tween = create_tween().set_ease(ease_type).set_trans(trans_type).set_parallel(true)
 
 func _on_mouse_hovered(hovered: bool) -> void:
-	print("hovered: ", hovered)
 	reset_tween()
 	tween.tween_property(self, "scale", scale_amount if hovered else Vector2.ONE, anim_duration)
 
 func _on_button_down():
-	print("button down")
 	reset_tween()
 	tween.tween_property(self, "scale", Vector2(0.9, 0.9), 0.05)
 
 func _on_button_up():
-	print("button up")
 	reset_tween()	
 	tween.tween_property(self, "scale", Vector2(1,1), 0.25)
