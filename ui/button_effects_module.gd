@@ -12,6 +12,7 @@ func _ready() -> void:
 	button_up.connect(_on_button_up)
 	mouse_entered.connect(_on_mouse_hovered.bind(true))
 	mouse_exited.connect(_on_mouse_hovered.bind(false))
+	pivot_offset_ratio = Vector2(0.5, 0.5)
 
 func reset_tween() -> void:
 	if tween:

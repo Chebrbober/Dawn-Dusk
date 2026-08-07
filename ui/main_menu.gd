@@ -1,10 +1,12 @@
 extends Control
 
 @export_file("*.tscn") var game_scene: String
+@onready var options: PanelContainer = $Options
 
 var tween: Tween = null
 
 func _ready() -> void:
+	options.visible = false
 	tween = create_tween()
 
 	for child in get_children():
@@ -23,7 +25,8 @@ func _on_credits_pressed() -> void:
 	pass
 
 func _on_options_pressed() -> void:
-	pass # Replace with function body.
+	options.visible = true
+	$MainButtons.visible = false
 
 func _on_play_pressed() -> void:
 	TransitionScene.transition_to(game_scene)
