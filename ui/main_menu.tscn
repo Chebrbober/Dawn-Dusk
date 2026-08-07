@@ -4,11 +4,6 @@
 [ext_resource type="Script" uid="uid://46gikvmtn4cp" path="res://ui/button_effects_module.gd" id="1_t7e0r"]
 [ext_resource type="Script" uid="uid://b7gtvcf64ug4e" path="res://ui/main_menu.gd" id="1_wk0pr"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_t7e0r"]
-font_size = 96
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
 [node name="MainMenu" type="Control" unique_id=470984384]
 layout_mode = 3
 anchors_preset = 15
@@ -72,7 +67,7 @@ text = "Exit"
 script = ExtResource("1_t7e0r")
 metadata/_custom_type_script = "uid://46gikvmtn4cp"
 
-[node name="Label" type="Label" parent="." unique_id=247766856]
+[node name="Label" type="RichTextLabel" parent="." unique_id=1496960195]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -80,13 +75,22 @@ anchor_top = 0.1
 anchor_right = 0.1
 anchor_bottom = 0.1
 offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 46
-text = "The Game"
-label_settings = SubResource("LabelSettings_t7e0r")
+offset_right = 448.0
+offset_bottom = 132.0
+rotation = -0.06283186
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 96
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+bbcode_enabled = true
+text = "[wave freq=5]The Game[/wave]"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters_behavior = 1
 
 [connection signal="pressed" from="MainButtons/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]

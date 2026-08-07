@@ -1,8 +1,8 @@
 class_name AnimatedButton extends Button
 
-@export var ease_type: Tween.EaseType
-@export var trans_type: Tween.TransitionType = Tween.TransitionType.TRANS_QUART
-@export var anim_duration: float = 0.1
+@export var ease_type: Tween.EaseType = Tween.EaseType.EASE_OUT
+@export var trans_type: Tween.TransitionType = Tween.TransitionType.TRANS_CUBIC
+@export var anim_duration: float = 0.2
 @export var scale_amount: Vector2 = Vector2(1.15, 1.15)
 
 var tween: Tween = null
