@@ -10,12 +10,14 @@ func _ready() -> void:
 	tween = create_tween()
 
 	for child in get_children():
-		child.scale = Vector2.ZERO
-		child.pivot_offset_ratio = Vector2(0.5, 0.5)
+		if child is Control:
+			child.scale = Vector2.ZERO
+			child.pivot_offset_ratio = Vector2(0.5, 0.5)
 
 	for child in get_children():
-		tween.tween_property(child, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_CUBIC)
-		tween.tween_interval(0.1)
+		if child is Control:
+			tween.tween_property(child, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_CUBIC)
+			tween.tween_interval(0.1)
 
 
 func _on_exit_pressed() -> void:
