@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://w431v2dkikrd" path="res://ui/options.gd" id="4_rmr83"]
 [ext_resource type="AudioStream" uid="uid://duj6epkpxh66c" path="res://assets/sounds/611945__szegvari__walking-jazz-guitar-solo-retro-cinematic-music-surround.ogg" id="5_8uxxo"]
 [ext_resource type="Script" uid="uid://buonnuy0nadbo" path="res://ui/fullscreen_control.gd" id="5_ei257"]
+[ext_resource type="PackedScene" uid="uid://toi6nhmm4rwf" path="res://ui/animated_background.tscn" id="6_p8ri8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jo5lq"]
 font_size = 48
@@ -19,6 +20,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wk0pr")
 game_scene = "uid://iolp4xh251hy"
+
+[node name="AnimatedBackground" parent="." unique_id=1611714159 instance=ExtResource("6_p8ri8")]
+layout_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=50388875]
 layout_mode = 1
