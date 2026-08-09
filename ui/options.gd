@@ -6,6 +6,7 @@ extends PanelContainer
 @onready var color_rect: ColorRect = %ColorRect
 
 func _ready() -> void:
+	visible = false 
 	for bus in AudioServer.get_bus_count():
 		var bus_name = AudioServer.get_bus_name(bus)
 		var audio_container = audio_container_scene.instantiate()

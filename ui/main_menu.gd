@@ -2,12 +2,12 @@ extends Control
 
 @export_file("*.tscn") var game_scene: String
 @onready var options: PanelContainer = $CanvasLayer/Options
+@onready var credits: PanelContainer = $CanvasLayer/Credits
 @onready var animated_background: Control = %AnimatedBackground
 
 var tween: Tween = null
 
 func _ready() -> void:
-	options.visible = false
 	tween = create_tween()
 
 	for child in get_children():
@@ -25,7 +25,7 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_credits_pressed() -> void:
-	pass
+	credits.appear()
 
 func _on_options_pressed() -> void:
 	options.appear()
