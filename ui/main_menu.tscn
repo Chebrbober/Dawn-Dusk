@@ -22,6 +22,7 @@ script = ExtResource("1_wk0pr")
 game_scene = "uid://iolp4xh251hy"
 
 [node name="AnimatedBackground" parent="." unique_id=1611714159 instance=ExtResource("6_p8ri8")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=50388875]
@@ -50,6 +51,7 @@ vertical_alignment = 1
 visible_characters_behavior = 1
 
 [node name="MainButtons" type="PanelContainer" parent="." unique_id=1826737615]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8
@@ -101,34 +103,51 @@ text = "Exit"
 script = ExtResource("1_t7e0r")
 metadata/_custom_type_script = "uid://46gikvmtn4cp"
 
-[node name="Options" type="PanelContainer" parent="." unique_id=2109880929]
-layout_mode = 1
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="." unique_id=196320466]
+stream = ExtResource("5_8uxxo")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=173263861]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1433721338]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25490198)
+
+[node name="Options" type="PanelContainer" parent="CanvasLayer" unique_id=2109880929]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -121.5
-offset_top = -137.5
+offset_top = -145.0
 offset_right = 121.5
-offset_bottom = 137.5
+offset_bottom = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_rmr83")
 audio_container_scene = ExtResource("4_ei257")
 
-[node name="MarginContainer" type="MarginContainer" parent="Options" unique_id=833091162]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Options" unique_id=833091162]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer" unique_id=1926682473]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Options/MarginContainer" unique_id=1926682473]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="Options/MarginContainer/VBoxContainer" unique_id=853093004]
+[node name="Label" type="Label" parent="CanvasLayer/Options/MarginContainer/VBoxContainer" unique_id=853093004]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Options"
@@ -136,18 +155,18 @@ label_settings = SubResource("LabelSettings_jo5lq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SettingsContainer" type="VBoxContainer" parent="Options/MarginContainer/VBoxContainer" unique_id=1296154401]
+[node name="SettingsContainer" type="VBoxContainer" parent="CanvasLayer/Options/MarginContainer/VBoxContainer" unique_id=1296154401]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="FullscreenControl" type="CheckButton" parent="Options/MarginContainer/VBoxContainer/SettingsContainer" unique_id=169457052]
+[node name="FullscreenControl" type="CheckButton" parent="CanvasLayer/Options/MarginContainer/VBoxContainer/SettingsContainer" unique_id=169457052]
 layout_mode = 2
 theme_override_constants/icon_max_width = 200
 text = "Fullscreen"
 script = ExtResource("5_ei257")
 
-[node name="Back" type="Button" parent="Options/MarginContainer/VBoxContainer" unique_id=230199696]
+[node name="Back" type="Button" parent="CanvasLayer/Options/MarginContainer/VBoxContainer" unique_id=230199696]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 46
@@ -156,14 +175,9 @@ text = "Back
 script = ExtResource("1_t7e0r")
 metadata/_custom_type_script = "uid://46gikvmtn4cp"
 
-[node name="MainMenuMusic" type="AudioStreamPlayer" parent="." unique_id=196320466]
-stream = ExtResource("5_8uxxo")
-autoplay = true
-bus = &"Music"
-
 [connection signal="pressed" from="MainButtons/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainButtons/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainButtons/MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainButtons/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="toggled" from="Options/MarginContainer/VBoxContainer/SettingsContainer/FullscreenControl" to="Options/MarginContainer/VBoxContainer/SettingsContainer/FullscreenControl" method="_on_toggled"]
-[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/Back" to="Options" method="_on_back_pressed"]
+[connection signal="toggled" from="CanvasLayer/Options/MarginContainer/VBoxContainer/SettingsContainer/FullscreenControl" to="CanvasLayer/Options/MarginContainer/VBoxContainer/SettingsContainer/FullscreenControl" method="_on_toggled"]
+[connection signal="pressed" from="CanvasLayer/Options/MarginContainer/VBoxContainer/Back" to="CanvasLayer/Options" method="_on_back_pressed"]
