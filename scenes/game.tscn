@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://iolp4xh251hy"]
 
 [ext_resource type="PackedScene" uid="uid://cogiqpnxstijp" path="res://ui/pause_menu.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://b1xq2rl3i1ql1" path="res://scenes/player.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=1796160669]
 
 [node name="PauseMenu" parent="." unique_id=1891448500 instance=ExtResource("1_uwrxv")]
+visible = false
+
+[node name="Player" parent="." unique_id=1574264908 instance=ExtResource("2_yqjtg")]
