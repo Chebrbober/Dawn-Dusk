@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cveo1w75xq4kx"]
 
 [ext_resource type="Script" uid="uid://b0umk6px8drne" path="res://scripts/slash_attack.gd" id="1_qr3qw"]
-[ext_resource type="Script" uid="uid://xxpru5t5cevk" path="res://scripts/htibox_component.gd" id="1_r2aa3"]
+[ext_resource type="Script" uid="uid://xxpru5t5cevk" path="res://scripts/hitbox_component.gd" id="1_r2aa3"]
 [ext_resource type="Texture2D" uid="uid://cg4cc0d2ho237" path="res://assets/sprites/slash_spritesheet.png" id="2_y8d4n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70x3c"]
@@ -51,6 +51,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iiwnv")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": 0,
 "name": &"slash",
@@ -74,6 +77,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_y8d4n"]
 resource_name = "slash"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -81,7 +85,7 @@ tracks/0/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 1),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]

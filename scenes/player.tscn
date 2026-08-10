@@ -23,6 +23,7 @@ script = ExtResource("1_3vyb7")
 polygon = PackedVector2Array(-24, -24, -24, 24, 24, 24, 24, -24)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990563355]
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_u8vuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12647014]
@@ -53,8 +54,8 @@ position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_6kx4d")
 debug_color = Color(0.8682508, 0.28800625, 0.5301998, 0.41960785)
 
-[node name="AttackComponent" type="Node" parent="." unique_id=1041146875]
+[node name="AttackComponent" type="Node2D" parent="." unique_id=216670954]
+unique_name_in_owner = true
 script = ExtResource("6_tuyoq")
-metadata/_custom_type_script = "uid://1k5wdubdqxio"
 
 [node name="SlashAttack" parent="AttackComponent" unique_id=873155471 instance=ExtResource("7_fjrip")]
