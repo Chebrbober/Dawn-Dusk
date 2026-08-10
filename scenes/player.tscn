@@ -4,11 +4,17 @@
 [ext_resource type="Script" uid="uid://bj5wdu2dt7f75" path="res://scripts/stats_component.gd" id="2_dqkch"]
 [ext_resource type="Script" uid="uid://cnfc2kjunf84v" path="res://scripts/move_component.gd" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://cywyi2sdywew1" path="res://scripts/move_input_component.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://bdu6afg6cjs83" path="res://scripts/hurtbox_component.gd" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://1k5wdubdqxio" path="res://scripts/attack_component.gd" id="6_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cveo1w75xq4kx" path="res://scenes/attacks/slash_attack.tscn" id="7_fjrip"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u8vuu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jo5lq"]
-radius = 16.0
+radius = 18.027756
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6kx4d"]
+radius = 19.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1574264908]
 script = ExtResource("1_3vyb7")
@@ -20,11 +26,11 @@ polygon = PackedVector2Array(-24, -24, -24, 24, 24, 24, 24, -24)
 sprite_frames = SubResource("SpriteFrames_u8vuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12647014]
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_jo5lq")
 
 [node name="StatsComponent" type="Node" parent="." unique_id=706760027]
 script = ExtResource("2_dqkch")
-speed = 300.0
 metadata/_custom_type_script = "uid://bj5wdu2dt7f75"
 
 [node name="MoveComponent" type="Node" parent="." unique_id=1821872111 node_paths=PackedStringArray("actor")]
@@ -32,8 +38,23 @@ script = ExtResource("3_qlg0r")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://cnfc2kjunf84v"
 
-[node name="MoveInputComponent" type="Node" parent="." unique_id=1857237783 node_paths=PackedStringArray("stats_component", "move_component")]
+[node name="MoveInputComponent" type="Node" parent="." unique_id=1857237783 node_paths=PackedStringArray("move_component")]
 script = ExtResource("4_tuyoq")
-stats_component = NodePath("../StatsComponent")
 move_component = NodePath("../MoveComponent")
 metadata/_custom_type_script = "uid://cywyi2sdywew1"
+
+[node name="HurtBoxComponent" type="Area2D" parent="." unique_id=1961994103 node_paths=PackedStringArray("stats_component")]
+script = ExtResource("5_qlg0r")
+stats_component = NodePath("../StatsComponent")
+metadata/_custom_type_script = "uid://bdu6afg6cjs83"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=1449623918]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_6kx4d")
+debug_color = Color(0.8682508, 0.28800625, 0.5301998, 0.41960785)
+
+[node name="AttackComponent" type="Node" parent="." unique_id=1041146875]
+script = ExtResource("6_tuyoq")
+metadata/_custom_type_script = "uid://1k5wdubdqxio"
+
+[node name="SlashAttack" parent="AttackComponent" unique_id=873155471 instance=ExtResource("7_fjrip")]
