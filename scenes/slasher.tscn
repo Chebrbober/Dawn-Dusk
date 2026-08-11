@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://rtsn1qpamrwb"]
+
+[ext_resource type="PackedScene" uid="uid://c8r4iycpcub20" path="res://scenes/enemy.tscn" id="1_6pg0a"]
+[ext_resource type="PackedScene" uid="uid://cveo1w75xq4kx" path="res://scenes/attacks/slash_attack.tscn" id="2_xbqyi"]
+[ext_resource type="Script" uid="uid://bp52voky2tca" path="res://scripts/navigation_component.gd" id="3_umogs"]
+[ext_resource type="Script" uid="uid://dp1kx6bt6e1j" path="res://scripts/hurt_component.gd" id="4_8hdf4"]
+[ext_resource type="Shader" uid="uid://buso4cig8nho1" path="res://scripts/hurt.gdshader" id="5_1mbkm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_md484"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jo5lq"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dguew"]
+radius = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyyn3"]
+shader = ExtResource("5_1mbkm")
+shader_parameter/hit_color = Color(1, 0, 0, 1)
+shader_parameter/hit_opacity = 0.0
+
+[node name="Slasher" unique_id=766629636 instance=ExtResource("1_6pg0a")]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="0" unique_id=570238087]
+color = Color(1, 0.4862745, 0.4862745, 1)
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=613553969]
+sprite_frames = SubResource("SpriteFrames_md484")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=609592803]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_jo5lq")
+
+[node name="StatsComponent" parent="." index="3" unique_id=1016518653]
+health = 50.0
+
+[node name="HurtBoxComponent" parent="." index="5" unique_id=522007551 node_paths=PackedStringArray("stats_component")]
+stats_component = NodePath("../StatsComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" index="0" unique_id=1846714672]
+shape = SubResource("CircleShape2D_dguew")
+debug_color = Color(0.9761016, 0, 0.41798097, 0.41960785)
+
+[node name="SlashAttack" parent="AttackComponent" parent_id_path=PackedInt32Array(629873012) index="0" unique_id=873155471 instance=ExtResource("2_xbqyi")]
+
+[node name="NavigationComponent" type="NavigationAgent2D" parent="." index="7" unique_id=22163271 node_paths=PackedStringArray("actor", "move_component")]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+script = ExtResource("3_umogs")
+actor = NodePath("..")
+move_component = NodePath("../MoveComponent")
+metadata/_custom_type_script = "uid://bp52voky2tca"
+
+[node name="Timer" type="Timer" parent="." index="8" unique_id=1018376614]
+wait_time = 0.25
+autostart = true
+
+[node name="HurtComponent" type="Node" parent="." index="9" unique_id=1126927523 node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_8hdf4")
+sprite = NodePath("../AnimatedSprite2D")
+hurt_shader = SubResource("ShaderMaterial_uyyn3")
+metadata/_custom_type_script = "uid://dp1kx6bt6e1j"
+
+[connection signal="hurt" from="HurtBoxComponent" to="HurtComponent" method="_on_hurt" unbinds=1]
+[connection signal="timeout" from="Timer" to="NavigationComponent" method="_on_timer_timeout"]

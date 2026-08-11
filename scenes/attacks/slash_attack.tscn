@@ -2,7 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b0umk6px8drne" path="res://scripts/slash_attack.gd" id="1_qr3qw"]
 [ext_resource type="Script" uid="uid://xxpru5t5cevk" path="res://scripts/hitbox_component.gd" id="1_r2aa3"]
+[ext_resource type="Shader" uid="uid://buso4cig8nho1" path="res://scripts/hurt.gdshader" id="2_70x3c"]
 [ext_resource type="Texture2D" uid="uid://cg4cc0d2ho237" path="res://assets/sprites/slash_spritesheet.png" id="2_y8d4n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0llj"]
+shader = ExtResource("2_70x3c")
+shader_parameter/hit_color = Color(1, 0, 0, 1)
+shader_parameter/hit_opacity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70x3c"]
 atlas = ExtResource("2_y8d4n")
@@ -74,6 +80,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_y8d4n"]
 resource_name = "slash"
@@ -85,10 +103,22 @@ tracks/0/path = NodePath("HitBoxComponent/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.5),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70x3c"]
@@ -101,10 +131,12 @@ _data = {
 size = Vector2(10, 25.5)
 
 [node name="SlashAttack" type="Node2D" unique_id=873155471]
+z_index = 3
 script = ExtResource("1_qr3qw")
 damage_bonus = 5.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1313757126]
+material = SubResource("ShaderMaterial_c0llj")
 sprite_frames = SubResource("SpriteFrames_jo5lq")
 animation = &"slash"
 
@@ -112,6 +144,8 @@ animation = &"slash"
 libraries/ = SubResource("AnimationLibrary_70x3c")
 
 [node name="HitBoxComponent" type="Area2D" parent="." unique_id=2065040022]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_r2aa3")
 metadata/_custom_type_script = "uid://xxpru5t5cevk"
 

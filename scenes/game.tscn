@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://iolp4xh251hy"]
 
+[ext_resource type="Script" uid="uid://busqwqoixg6v0" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cogiqpnxstijp" path="res://ui/pause_menu.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b1xq2rl3i1ql1" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://rtsn1qpamrwb" path="res://scenes/slasher.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node2D" unique_id=1796160669]
+script = ExtResource("1_lnu2h")
 
 [node name="PauseMenu" parent="." unique_id=1891448500 instance=ExtResource("1_uwrxv")]
 visible = false
 
 [node name="Player" parent="." unique_id=1574264908 instance=ExtResource("2_yqjtg")]
+position = Vector2(78, 75)
+
+[node name="Slasher" parent="." unique_id=766629636 instance=ExtResource("3_lnu2h")]
+position = Vector2(267, 63)
