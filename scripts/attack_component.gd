@@ -10,11 +10,11 @@ func _on_attack_executed() -> void:
 		await get_tree().create_timer(cooldown).timeout
 		can_attack = true
 
-func attack() -> void:
+func attack(target_pos: Vector2 = Vector2.ZERO) -> void:
 	if can_attack:
 		for attack in get_children():
 			if attack is Attack:
-				attack.execute(self)
+				attack.execute(self, target_pos)
 				_on_attack_executed()
 	
 func get_damage(attack: Attack) -> float:
