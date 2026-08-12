@@ -162,7 +162,7 @@ size_flags_vertical = 4
 
 [node name="FullscreenControl" type="CheckButton" parent="CanvasLayer/Options/MarginContainer/VBoxContainer/SettingsContainer" unique_id=169457052]
 layout_mode = 2
-theme_override_constants/icon_max_width = 200
+theme_override_font_sizes/font_size = 8
 text = "Fullscreen"
 script = ExtResource("5_ei257")
 

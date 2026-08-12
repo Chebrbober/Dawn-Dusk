@@ -37,6 +37,9 @@ shape = SubResource("CircleShape2D_jo5lq")
 [node name="StatsComponent" parent="." index="3" unique_id=1016518653]
 health = 50.0
 
+[node name="MoveComponent" parent="." index="4" unique_id=707734560]
+tween_trans_type = 1
+
 [node name="HurtBoxComponent" parent="." index="5" unique_id=522007551 node_paths=PackedStringArray("stats_component")]
 stats_component = NodePath("../StatsComponent")
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bog2lx2qyogy8" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bj5wdu2dt7f75" path="res://scripts/stats_component.gd" id="2_dqkch"]
 [ext_resource type="Shader" uid="uid://buso4cig8nho1" path="res://scripts/hurt.gdshader" id="2_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://cbb6gxihgncb2" path="res://assets/sprites/player_spritesheet.png" id="3_d2wvv"]
 [ext_resource type="Script" uid="uid://cnfc2kjunf84v" path="res://scripts/move_component.gd" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://cywyi2sdywew1" path="res://scripts/move_input_component.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://bdu6afg6cjs83" path="res://scripts/hurtbox_component.gd" id="5_qlg0r"]
@@ -16,13 +17,90 @@ shader = ExtResource("2_ur7pv")
 shader_parameter/hit_color = Color(1, 0, 0, 1)
 shader_parameter/hit_opacity = 0.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5pv"]
+atlas = ExtResource("3_d2wvv")
+region = Rect2(80, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u8vuu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}],
+"loop": 1,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprun")
+}],
+"loop": 1,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
+}],
+"loop": 1,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fulsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r5pv")
+}],
+"loop": 1,
+"name": &"up",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jo5lq"]
-radius = 13.038404
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6kx4d"]
-radius = 12.0415945
+radius = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3v2ag"]
 shader = ExtResource("2_ur7pv")
@@ -37,18 +115,13 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_3vyb7")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1579736267]
-color = Color(0.31764707, 0.61960787, 1, 1)
-polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=990563355]
 material = SubResource("ShaderMaterial_d2wvv")
-position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_u8vuu")
-frame_progress = 0.43703052
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=12647014]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_jo5lq")
 
 [node name="StatsComponent" type="Node" parent="." unique_id=706760027]

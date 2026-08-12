@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"slash",
-"speed": 16.0
+"speed": 20.0
 }]
 
 [sub_resource type="Animation" id="Animation_70x3c"]
@@ -139,6 +139,8 @@ damage_bonus = 5.0
 material = SubResource("ShaderMaterial_c0llj")
 sprite_frames = SubResource("SpriteFrames_jo5lq")
 animation = &"slash"
+frame = 7
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=930240129]
 libraries/ = SubResource("AnimationLibrary_70x3c")
