@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bj5wdu2dt7f75" path="res://scripts/stats_component.gd" id="1_5uy6h"]
 [ext_resource type="Script" uid="uid://cnfc2kjunf84v" path="res://scripts/move_component.gd" id="2_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://cac76q5kc8ynv" path="res://scenes/blood.tscn" id="2_xwavj"]
 [ext_resource type="Script" uid="uid://bdu6afg6cjs83" path="res://scripts/hurtbox_component.gd" id="3_xwavj"]
 [ext_resource type="Script" uid="uid://1k5wdubdqxio" path="res://scripts/attack_component.gd" id="4_nenq2"]
 
@@ -15,6 +16,7 @@ collision_mask = 3
 
 [node name="StatsComponent" type="Node" parent="." unique_id=1016518653]
 script = ExtResource("1_5uy6h")
+blood_scene = ExtResource("2_xwavj")
 metadata/_custom_type_script = "uid://bj5wdu2dt7f75"
 
 [node name="MoveComponent" type="Node" parent="." unique_id=707734560 node_paths=PackedStringArray("actor")]
@@ -31,3 +33,5 @@ metadata/_custom_type_script = "uid://bdu6afg6cjs83"
 [node name="AttackComponent" type="Node2D" parent="." unique_id=629873012]
 script = ExtResource("4_nenq2")
 metadata/_custom_type_script = "uid://1k5wdubdqxio"
+
+[connection signal="no_health" from="StatsComponent" to="StatsComponent" method="_on_no_health"]

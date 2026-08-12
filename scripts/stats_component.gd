@@ -1,5 +1,6 @@
 class_name StatsComponent extends Node
 
+@export var blood_scene: PackedScene
 @export var health: float = 100.0:
 	set(value):
 		health = value
@@ -9,6 +10,13 @@ class_name StatsComponent extends Node
 
 func take_damage(damage_amount: float) -> void:
 	health -= damage_amount
+
+func _on_no_health():
+	if get_parent() == GameManager.player:
+		pass
+	else:
+		GameManager.instance_node(blood_scene, get_parent().global_position, get_parent().get_parent())
+		get_parent().queue_free()
 
 signal health_changed() 
 signal no_health() 

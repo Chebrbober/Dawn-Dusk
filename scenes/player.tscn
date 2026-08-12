@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cbb6gxihgncb2" path="res://assets/sprites/player_spritesheet.png" id="3_d2wvv"]
 [ext_resource type="Script" uid="uid://cnfc2kjunf84v" path="res://scripts/move_component.gd" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://cywyi2sdywew1" path="res://scripts/move_input_component.gd" id="4_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cac76q5kc8ynv" path="res://scenes/blood.tscn" id="5_3v2ag"]
 [ext_resource type="Script" uid="uid://bdu6afg6cjs83" path="res://scripts/hurtbox_component.gd" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://1k5wdubdqxio" path="res://scripts/attack_component.gd" id="6_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://cveo1w75xq4kx" path="res://scenes/attacks/slash_attack.tscn" id="7_fjrip"]
@@ -126,6 +127,7 @@ shape = SubResource("CircleShape2D_jo5lq")
 
 [node name="StatsComponent" type="Node" parent="." unique_id=706760027]
 script = ExtResource("2_dqkch")
+blood_scene = ExtResource("5_3v2ag")
 metadata/_custom_type_script = "uid://bj5wdu2dt7f75"
 
 [node name="MoveComponent" type="Node" parent="." unique_id=1821872111 node_paths=PackedStringArray("actor")]
@@ -166,4 +168,5 @@ sprite = NodePath("../AnimatedSprite2D")
 hurt_shader = SubResource("ShaderMaterial_3v2ag")
 metadata/_custom_type_script = "uid://dp1kx6bt6e1j"
 
+[connection signal="no_health" from="StatsComponent" to="StatsComponent" method="_on_no_health"]
 [connection signal="hurt" from="HurtBoxComponent" to="HurtComponent" method="_on_hurt" unbinds=1]
