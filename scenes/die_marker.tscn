@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dypq8j8eci6r8"]
+
+[ext_resource type="Script" uid="uid://bf2ffnw4wde4j" path="res://scripts/die_marker.gd" id="1_vurvu"]
+
+[node name="DieMarker" type="Marker2D" unique_id=2036618661]
+script = ExtResource("1_vurvu")

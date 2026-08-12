@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8r4iycpcub20"]
 
 [ext_resource type="Script" uid="uid://bj5wdu2dt7f75" path="res://scripts/stats_component.gd" id="1_5uy6h"]
+[ext_resource type="Script" uid="uid://cq4xoqesdwu0h" path="res://scripts/enemy.gd" id="1_xwavj"]
 [ext_resource type="Script" uid="uid://cnfc2kjunf84v" path="res://scripts/move_component.gd" id="2_c4w8v"]
 [ext_resource type="PackedScene" uid="uid://cac76q5kc8ynv" path="res://scenes/blood.tscn" id="2_xwavj"]
 [ext_resource type="Script" uid="uid://bdu6afg6cjs83" path="res://scripts/hurtbox_component.gd" id="3_xwavj"]
@@ -9,6 +10,7 @@
 [node name="Enemy" type="CharacterBody2D" unique_id=766629636]
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("1_xwavj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613553969]
 

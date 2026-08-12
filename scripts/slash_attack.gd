@@ -13,7 +13,7 @@ func execute(attacker: AttackComponent, target_pos: Vector2) -> void:
 		direction = (mouse_pos - global_position).normalized()
 
 	damage = attacker.get_damage(self)
-	position = position + direction * 50
+	position = position + direction * 20
 	rotation = direction.angle()
 
 	animation_player.play("slash")

@@ -58,7 +58,7 @@ debug_enabled = true
 script = ExtResource("3_umogs")
 actor = NodePath("..")
 move_component = NodePath("../MoveComponent")
-stop_distance = 40.0
+stop_distance = 30.0
 metadata/_custom_type_script = "uid://bp52voky2tca"
 
 [node name="Timer" type="Timer" parent="." index="8" unique_id=1018376614]

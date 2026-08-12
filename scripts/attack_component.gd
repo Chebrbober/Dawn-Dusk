@@ -19,3 +19,10 @@ func attack(target_pos: Vector2 = Vector2.ZERO) -> void:
 	
 func get_damage(attack: Attack) -> float:
 	return base_damage + attack.damage_bonus
+
+func get_attacks_type() -> Array[Attack]:
+	var attack_types_array: Array[Attack]
+	for attack in get_children():
+		if attack is Attack:
+			attack_types_array.append(attack)
+	return attack_types_array

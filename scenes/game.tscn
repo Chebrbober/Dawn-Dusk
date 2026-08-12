@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://b1xq2rl3i1ql1" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://rtsn1qpamrwb" path="res://scenes/slasher.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://dbk6nsmflus5e" path="res://assets/one_bit_tileset.png" id="5_iywne"]
+[ext_resource type="Shader" uid="uid://dsk7t03g8ldxv" path="res://scripts/invert_color.gdshader" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://vyspiq1o266l" path="res://scripts/world_side_manager.gd" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://cb4c6xr21v6qq" path="res://scripts/enemies_manager.gd" id="7_gee14"]
+[ext_resource type="Script" uid="uid://sg6ox8qromnj" path="res://scripts/die_markers_manager.gd" id="9_0tnpc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iywne"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -134,6 +138,9 @@ terrain_set_0/terrain_0/color = Color(0.5019608, 0.83137256, 0.2509804, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_p57ef")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jo5lq"]
+shader = ExtResource("6_p57ef")
+
 [node name="Game" type="Node2D" unique_id=1796160669]
 script = ExtResource("1_lnu2h")
 
@@ -149,5 +156,29 @@ visible = false
 [node name="Player" parent="." unique_id=1574264908 instance=ExtResource("2_yqjtg")]
 position = Vector2(78, 75)
 
-[node name="Slasher" parent="." unique_id=766629636 instance=ExtResource("3_lnu2h")]
-position = Vector2(267, 63)
+[node name="WorldSideManager" type="Node" parent="." unique_id=1082514035]
+script = ExtResource("6_u5sy4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WorldSideManager" unique_id=1501356019]
+
+[node name="ShaderRect" type="ColorRect" parent="WorldSideManager/CanvasLayer" unique_id=35452209]
+visible = false
+material = SubResource("ShaderMaterial_jo5lq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemiesManager" type="Node" parent="." unique_id=1742327296]
+unique_name_in_owner = true
+script = ExtResource("7_gee14")
+
+[node name="Slasher" parent="EnemiesManager" unique_id=766629636 instance=ExtResource("3_lnu2h")]
+position = Vector2(304, 121)
+
+[node name="DieMarkersManager" type="Node" parent="." unique_id=1824232392]
+unique_name_in_owner = true
+script = ExtResource("9_0tnpc")
+
+[connection signal="child_order_changed" from="EnemiesManager" to="EnemiesManager" method="_on_child_order_changed"]

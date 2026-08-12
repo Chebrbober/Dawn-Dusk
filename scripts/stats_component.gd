@@ -6,17 +6,17 @@ class_name StatsComponent extends Node
 		health = value
 		health_changed.emit()
 		
-		if health <= 0: no_health.emit()
+		if health <= 0: no_health.emit(get_parent())
 
 func take_damage(damage_amount: float) -> void:
 	health -= damage_amount
 
-func _on_no_health():
-	if get_parent() == GameManager.player:
+func _on_no_health(_body: CharacterBody2D):
+	if _body == GameManager.player:
 		pass
 	else:
 		GameManager.instance_node(blood_scene, get_parent().global_position, get_parent().get_parent())
 		get_parent().queue_free()
 
 signal health_changed() 
-signal no_health() 
+signal no_health(body: CharacterBody2D) 
