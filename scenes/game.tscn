@@ -177,14 +177,17 @@ die_marker_scene = ExtResource("10_vtaks")
 y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1574264908 instance=ExtResource("2_yqjtg")]
+process_priority = 2
 position = Vector2(78, 75)
 
-[node name="EnemiesManager" type="Node" parent="YSortRoot" unique_id=1742327296 node_paths=PackedStringArray("die_markers_spawn_location")]
+[node name="EnemiesManager" type="Node2D" parent="YSortRoot" unique_id=1739755047 node_paths=PackedStringArray("die_markers_spawn_location")]
 unique_name_in_owner = true
+y_sort_enabled = true
 script = ExtResource("7_gee14")
 die_markers_spawn_location = NodePath("../../DieMarkersManager")
 
 [node name="Slasher" parent="YSortRoot/EnemiesManager" unique_id=766629636 instance=ExtResource("3_lnu2h")]
 position = Vector2(304, 121)
 
-[connection signal="child_order_changed" from="YSortRoot/EnemiesManager" to="YSortRoot/EnemiesManager" method="_on_child_order_changed"]
+[node name="Slasher2" parent="YSortRoot/EnemiesManager" unique_id=739529024 instance=ExtResource("3_lnu2h")]
+position = Vector2(221, 184)

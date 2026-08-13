@@ -1,6 +1,6 @@
 extends Node
 
-var player: Player
+@onready var player: Player
 
 func instance_node(node, location: Vector2, parent: Node):
 	var node_instance = node.instantiate()

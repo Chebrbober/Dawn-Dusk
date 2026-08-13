@@ -16,6 +16,8 @@ func _on_no_health(_body: CharacterBody2D):
 		pass
 	else:
 		GameManager.instance_node(blood_scene, get_parent().global_position, get_parent().get_parent())
+		_body.process_mode = Node.PROCESS_MODE_DISABLED
+		await get_tree().create_timer(0.5).timeout
 		get_parent().queue_free()
 
 signal health_changed() 

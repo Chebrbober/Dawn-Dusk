@@ -38,7 +38,6 @@ shape = SubResource("CircleShape2D_jo5lq")
 health = 50.0
 
 [node name="MoveComponent" parent="." index="4" unique_id=707734560]
-tween_trans_type = 1
 speed = 75.0
 
 [node name="HurtBoxComponent" parent="." index="5" unique_id=522007551 node_paths=PackedStringArray("stats_component")]
@@ -58,7 +57,7 @@ debug_enabled = true
 script = ExtResource("3_umogs")
 actor = NodePath("..")
 move_component = NodePath("../MoveComponent")
-stop_distance = 30.0
+stop_distance = 25.0
 metadata/_custom_type_script = "uid://bp52voky2tca"
 
 [node name="Timer" type="Timer" parent="." index="8" unique_id=1018376614]
