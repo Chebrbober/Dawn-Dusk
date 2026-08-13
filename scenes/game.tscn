@@ -143,6 +143,7 @@ sources/0 = SubResource("TileSetAtlasSource_p57ef")
 shader = ExtResource("6_p57ef")
 
 [node name="Game" type="Node2D" unique_id=1796160669]
+process_mode = 1
 script = ExtResource("1_lnu2h")
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=1674976645]
@@ -177,8 +178,7 @@ die_marker_scene = ExtResource("10_vtaks")
 y_sort_enabled = true
 
 [node name="Player" parent="YSortRoot" unique_id=1574264908 instance=ExtResource("2_yqjtg")]
-process_priority = 2
-position = Vector2(78, 75)
+position = Vector2(78, 76)
 
 [node name="EnemiesManager" type="Node2D" parent="YSortRoot" unique_id=1739755047 node_paths=PackedStringArray("die_markers_spawn_location")]
 unique_name_in_owner = true
