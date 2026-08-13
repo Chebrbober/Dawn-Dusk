@@ -9,7 +9,9 @@ enum WorldSides {
 var current_world_side: WorldSides = WorldSides.NIGHT
 
 func _ready() -> void:
-	GameManager.player.stats_component.no_health.connect(switch_world_side)
+	if GameManager.player and GameManager.player.stats_component:
+		if !GameManager.player.stats_component.no_health.is_connected(switch_world_side):
+			GameManager.player.stats_component.no_health.connect(switch_world_side)
 
 func switch_world_side(_body: CharacterBody2D) -> void:
 	if current_world_side == WorldSides.NIGHT:

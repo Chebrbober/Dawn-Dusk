@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://vyspiq1o266l" path="res://scripts/world_side_manager.gd" id="6_u5sy4"]
 [ext_resource type="Script" uid="uid://cb4c6xr21v6qq" path="res://scripts/enemies_manager.gd" id="7_gee14"]
 [ext_resource type="Script" uid="uid://sg6ox8qromnj" path="res://scripts/die_markers_manager.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dypq8j8eci6r8" path="res://scenes/die_marker.tscn" id="10_vtaks"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iywne"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -153,13 +154,11 @@ tile_set = SubResource("TileSet_iywne")
 [node name="PauseMenu" parent="." unique_id=1891448500 instance=ExtResource("1_uwrxv")]
 visible = false
 
-[node name="Player" parent="." unique_id=1574264908 instance=ExtResource("2_yqjtg")]
-position = Vector2(78, 75)
-
 [node name="WorldSideManager" type="Node" parent="." unique_id=1082514035]
 script = ExtResource("6_u5sy4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="WorldSideManager" unique_id=1501356019]
+layer = 3
 
 [node name="ShaderRect" type="ColorRect" parent="WorldSideManager/CanvasLayer" unique_id=35452209]
 visible = false
@@ -170,15 +169,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EnemiesManager" type="Node" parent="." unique_id=1742327296]
+[node name="DieMarkersManager" type="Node" parent="." unique_id=1824232392]
+script = ExtResource("9_0tnpc")
+die_marker_scene = ExtResource("10_vtaks")
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=1805936265]
+y_sort_enabled = true
+
+[node name="Player" parent="YSortRoot" unique_id=1574264908 instance=ExtResource("2_yqjtg")]
+position = Vector2(78, 75)
+
+[node name="EnemiesManager" type="Node" parent="YSortRoot" unique_id=1742327296 node_paths=PackedStringArray("die_markers_spawn_location")]
 unique_name_in_owner = true
 script = ExtResource("7_gee14")
+die_markers_spawn_location = NodePath("../../DieMarkersManager")
 
-[node name="Slasher" parent="EnemiesManager" unique_id=766629636 instance=ExtResource("3_lnu2h")]
+[node name="Slasher" parent="YSortRoot/EnemiesManager" unique_id=766629636 instance=ExtResource("3_lnu2h")]
 position = Vector2(304, 121)
 
-[node name="DieMarkersManager" type="Node" parent="." unique_id=1824232392]
-unique_name_in_owner = true
-script = ExtResource("9_0tnpc")
-
-[connection signal="child_order_changed" from="EnemiesManager" to="EnemiesManager" method="_on_child_order_changed"]
+[connection signal="child_order_changed" from="YSortRoot/EnemiesManager" to="YSortRoot/EnemiesManager" method="_on_child_order_changed"]
