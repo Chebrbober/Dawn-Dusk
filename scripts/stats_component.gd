@@ -1,7 +1,8 @@
 class_name StatsComponent extends Node
 
 @export var blood_scene: PackedScene
-@export var health: float = 100.0:
+@export var max_health: float = 100.0
+var health: float = max_health:
 	set(value):
 		health = value
 		health_changed.emit()
@@ -16,9 +17,13 @@ func _on_no_health(_body: CharacterBody2D):
 		pass
 	else:
 		GameManager.instance_node(blood_scene, get_parent().global_position, get_parent().get_parent())
-		_body.process_mode = Node.PROCESS_MODE_DISABLED
-		await get_tree().create_timer(0.5).timeout
 		get_parent().queue_free()
+
+func heal(amount: float) -> void:
+	health = min(health + amount, max_health)
+
+func rebirth() -> void:
+	health = max_health
 
 signal health_changed() 
 signal no_health(body: CharacterBody2D) 

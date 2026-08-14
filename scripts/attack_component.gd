@@ -1,6 +1,6 @@
 class_name AttackComponent extends Node2D
 
-@export var base_damage: float = 10.0
+@export var base_damage: float = 0.0
 @export var damage_bonus_multiplier: float = 1.5
 @export var cooldown: float = 1
 var can_attack: bool = true
